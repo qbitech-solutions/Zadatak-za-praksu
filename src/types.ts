@@ -18,6 +18,4 @@ export type ModalProps = {
   title: string;
   children: React.ReactNode;
   confirmText?: string;
-  currentPriority?: "red" | "yellow" | "green";
-  handlePriorityChange?: (newPriority: "red" | "yellow" | "green") => void;
 };

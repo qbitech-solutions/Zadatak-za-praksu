@@ -1,6 +1,5 @@
 import { Modal, Button } from "react-bootstrap";
 import { ModalProps } from "../../types";
-import { useState } from "react";
 
 const CustomModal = ({
   show,
@@ -9,8 +8,6 @@ const CustomModal = ({
   title,
   children,
   confirmText = "Confirm",
-  currentPriority,
-  handlePriorityChange,
 }: ModalProps) => {
   const [newPriority, setNewPriority] = useState(currentPriority || "red");
 
@@ -49,7 +46,7 @@ const CustomModal = ({
           Close
         </Button>
         {handleConfirm && (
-          <Button variant="primary" onClick={() => handleConfirm(newPriority)}>
+          <Button variant="primary" onClick={handleConfirm}>
             {confirmText}
           </Button>
         )}
