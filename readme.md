@@ -1,5 +1,10 @@
 U ovom zadatku potrebno je kreirati aplikaciju koja ispunjava jednu ili vise od ovih tacaka, mozete izabrati i par tacaka koje mislite da mozete da uradite, nije neophodno ih uradite po redu.
 
+Zadatak mozete da radite u jeziku po svom izboru
+
+Neophodno je da komitujete blagovremeno, kako budete napredovali sa zadatkom, nemojte samo da kreirate jedan komit i da pushujete sve.
+Takodje, **nemojte pushovati node_modules folder**
+
 Zadatak koji treba da uradite je da napravite todo listu
 - Zadatak treba da ispunjava sledece kriterijume
 - kao korisnik, zeleo bih da imam mogucnost da dodam todo, obrisem i markiram kao completed, markirani kao completed treba da stoje u posebnoj koloni
