@@ -17,10 +17,14 @@ const TodoItems = ({
   const [editedTask, setEditedTask] = useState(todo.task);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [editPriority, setEditPriority] = useState(todo.priority);
 
   const handleEdit = async (id: number) => {
     try {
-      await axios.patch(`${config.apiUrl}/${id}`, { task: editedTask });
+      await axios.patch(`${config.apiUrl}/${id}`, {
+        task: editedTask,
+        priority: editPriority,
+      });
       setShowEditModal(false);
       onTaskChange();
     } catch (error) {
@@ -52,8 +56,13 @@ const TodoItems = ({
       <CustomModal
         show={showEditModal}
         handleClose={() => setShowEditModal(false)}
-        handleConfirm={() => handleEdit(todo.id)}
+        handleConfirm={(newPriority) => {
+          setEditPriority(newPriority);
+          handleEdit(todo.id);
+        }}
         title="Edit Task"
+        currentPriority={editPriority}
+        handlePriorityChange={(newPriority) => setEditPriority(newPriority)}
       >
         <label>Edit Task:</label>
         <input
