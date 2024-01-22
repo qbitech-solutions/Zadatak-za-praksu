@@ -8,4 +8,14 @@ export type Todo = {
 export type TodoItemsProps = {
   todo: Todo;
   onCheckboxChange: (id: number) => void;
+  onTaskChange: () => void;
+};
+
+export type ModalProps = {
+  show: boolean;
+  handleClose: () => void;
+  handleConfirm?: () => void;
+  title: string;
+  children: React.ReactNode;
+  confirmText?: string;
 };

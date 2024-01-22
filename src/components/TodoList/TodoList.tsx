@@ -63,6 +63,7 @@ const TodoList = () => {
             key={todo.id}
             todo={todo}
             onCheckboxChange={() => handleCheckboxChange(todo.id)}
+            onTaskChange={() => setCheckboxClickTime(Date.now())}
           />
         ))}
       </div>
@@ -73,6 +74,7 @@ const TodoList = () => {
             key={todo.id}
             todo={todo}
             onCheckboxChange={() => handleCheckboxChange(todo.id)}
+            onTaskChange={() => setCheckboxClickTime(Date.now())}
           />
         ))}
       </div>

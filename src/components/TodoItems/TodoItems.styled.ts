@@ -1,4 +1,4 @@
-import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 
 interface StyledTodoItemProps {
@@ -28,13 +28,21 @@ export const StyledFaEdit = styled(FaEdit)`
   height: 20px;
   color: #fff;
   margin-right: 10px;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
-export const StyledFaRegTrashAlt = styled(FaRegTrashAlt)`
+export const StyledFaRegTrashAlt = styled(FaTrash)`
   width: 20px;
   height: 20px;
   color: #fff;
   margin-right: 10px;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const getPriorityColor = (priority: "red" | "yellow" | "green") => {
