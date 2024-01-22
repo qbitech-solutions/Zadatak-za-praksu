@@ -3,6 +3,7 @@ import TodoItems from "../TodoItems/TodoItems";
 import axios from "axios";
 import config from "../../config";
 import { Todo } from "../../types";
+import CustomModal from "../Modal/Modal";
 import { StyledTodoList, StyledTodoDiv, StyledButton } from "./TodoList.styled";
 
 const TodoList = () => {
@@ -11,6 +12,9 @@ const TodoList = () => {
   const [checkboxClickTime, setCheckboxClickTime] = useState<number | null>(
     null
   );
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+  const [newTask, setNewTask] = useState("");
+  const [selectedPriority, setSelectedPriority] = useState("");
 
   useEffect(() => {
     axios
@@ -54,6 +58,23 @@ const TodoList = () => {
     }
   };
 
+  const handleAddTask = async (newTask: string) => {
+    try {
+      await axios.post(config.apiUrl, {
+        task: newTask,
+        priority: selectedPriority || "red",
+        completed: false,
+      });
+      setShowAddTaskModal(false);
+
+      const res = await axios.get(config.apiUrl);
+      setCompletedTodo(res.data.filter((todo: Todo) => todo.completed));
+      setNotCompletedTodo(res.data.filter((todo: Todo) => !todo.completed));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const sortByPriority = (todo: Todo[]) => {
     return todo.sort((a, b) => {
       const priorityOrder = { red: 1, yellow: 2, green: 3 };
@@ -65,7 +86,9 @@ const TodoList = () => {
     <>
       <StyledTodoDiv>
         <h1>Todo List</h1>
-        <StyledButton>Add task</StyledButton>
+        <StyledButton onClick={() => setShowAddTaskModal(true)}>
+          Add task
+        </StyledButton>
       </StyledTodoDiv>
       <StyledTodoList>
         <div>
@@ -91,6 +114,20 @@ const TodoList = () => {
           ))}
         </div>
       </StyledTodoList>
+      <CustomModal
+        show={showAddTaskModal}
+        handleClose={() => setShowAddTaskModal(false)}
+        handleConfirm={() => handleAddTask(newTask)}
+        handlePriorityChange={setSelectedPriority}
+        title="Add Task"
+      >
+        <label>Add Task:</label>
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+      </CustomModal>
     </>
   );
 };

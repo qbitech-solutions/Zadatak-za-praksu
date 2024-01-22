@@ -14,7 +14,7 @@ export type TodoItemsProps = {
 export type ModalProps = {
   show: boolean;
   handleClose: () => void;
-  handleConfirm?: (newPriority: "red" | "yellow" | "green") => void; // Include the argument
+  handleConfirm?: (newPriority: "red" | "yellow" | "green") => void;
   title: string;
   children: React.ReactNode;
   confirmText?: string;
