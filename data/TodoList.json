@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "task": "Something to do",
+      "priority": "red",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "task": "Another task",
+      "priority": "yellow",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "task": "clean",
+      "priority": "green",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "task": "shower",
+      "priority": "yellow",
+      "completed": true
+    }
+  ]
+}
