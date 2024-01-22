@@ -6,8 +6,6 @@ Zadatak koji treba da uradite je da napravite todo listu
   - svaki todo treba ima naslov, opis i prioritet
   - sortirati po prioritetu, grupisati po completed / not completed
   - zadatak mozete uraditi u sledecim tehnologijama
-- Frontend mozete uraditi React-u, Angular-u ili Vuejs-u
-- Backend mozete uraditi u Express-u ili NestJS
 - perzistirati stanje aplikacije u local storage ili u bazu podataka
 - dodati TypeScript
 - dodati autentifikaciju
