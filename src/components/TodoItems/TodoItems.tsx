@@ -1,15 +1,21 @@
 import { TodoItemsProps } from "../../types";
-import { StyledTodoItem } from "./TodoItems.styled";
+import {
+  StyledFaEdit,
+  StyledFaRegTrashAlt,
+  StyledTodoItem,
+} from "./TodoItems.styled";
 
 const TodoItems = ({ todo, onCheckboxChange }: TodoItemsProps) => {
   return (
-    <StyledTodoItem priority={todo.priority}>
+    <StyledTodoItem priority={todo.priority} completed={+todo.completed}>
       <input
         type="checkbox"
         checked={todo.completed}
         onChange={() => onCheckboxChange(todo.id)}
       />
-      {todo.task}
+      <div>{todo.task}</div>
+      <StyledFaEdit />
+      <StyledFaRegTrashAlt />
     </StyledTodoItem>
   );
 };
