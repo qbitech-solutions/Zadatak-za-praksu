@@ -12,9 +12,11 @@ export const StyledTodoItem = styled.div<StyledTodoItemProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
   background-color: ${(props) => getPriorityColor(props.priority)};
   text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
   input {
+    margin-left: 10px;
     margin-right: 10px;
   }
 
