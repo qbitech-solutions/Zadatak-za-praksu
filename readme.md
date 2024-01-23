@@ -6,6 +6,7 @@ Neophodno je da komitujete blagovremeno, kako budete napredovali sa zadatkom, ne
 Takodje, **nemojte pushovati node_modules folder**
 
 Zadatak koji treba da uradite je da napravite todo listu
+
 - Zadatak treba da ispunjava sledece kriterijume
 - kao korisnik, zeleo bih da imam mogucnost da dodam todo, obrisem i markiram kao completed, markirani kao completed treba da stoje u posebnoj koloni
   - svaki todo treba ima naslov, opis i prioritet
@@ -19,3 +20,39 @@ Minimalni kriterijumi su da imamo funkcionalnu todo listu kao i da moze da se iz
 
 Sav kod treba pushovati na ovaj forkovani repozitorijum, iako je repozitorijum podesen na private, nije neophodno promeniti na public.
 
+## Features
+
+Add, edit and remove task
+Read task description
+Choose priority
+Sort by priority: Red(high), Yellow(mid), Green(low)
+
+## Screenshots
+
+![Todo list](src/assets/screenshot1.png)
+
+![Read task description](src/assets/screenshot2.png)
+
+![Edit task](src/assets/screenshot3.png)
+
+![Add task](src/assets/screenshot4.png)
+
+## Installation
+
+Clone the repository and install dependencies.
+
+```bash
+git clone https://github.com/top17/Zadatak-za-praksu.git
+cd Zadatak-za-praksu
+npm install
+npm run dev
+```
+
+## Docker
+
+Build and run the Docker image:
+
+```bash
+docker build -t zadatak-za-praksu .
+docker run -p 5173:5173 -p 8000:8000 zadatak-za-praksu
+```
