@@ -1,0 +1,35 @@
+export type Todo = {
+  id: number;
+  task: string;
+  description: string;
+  priority: "red" | "yellow" | "green";
+  completed: boolean;
+};
+
+export type TodoItemsProps = {
+  todo: Todo;
+  onCheckboxChange: (id: number) => void;
+  onTaskChange: () => void;
+};
+
+export type ModalProps = {
+  show: boolean;
+  handleClose: () => void;
+  handleConfirm?: (
+    newPriority: "red" | "yellow" | "green",
+    newDescription: string
+  ) => void;
+  title: string;
+  children?: React.ReactNode;
+  description?: string;
+  confirmText?: string;
+  currentPriority?: "red" | "yellow" | "green";
+  handlePriorityChange?: (newPriority: "red" | "yellow" | "green") => void;
+  handleDescriptionChange?: (newDescription: string) => void;
+  readOnly?: boolean;
+};
+
+export type StyledTodoItemProps = {
+  priority: "red" | "yellow" | "green";
+  completed: boolean | number;
+};
