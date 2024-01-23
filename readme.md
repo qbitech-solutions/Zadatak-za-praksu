@@ -22,10 +22,10 @@ Sav kod treba pushovati na ovaj forkovani repozitorijum, iako je repozitorijum p
 
 ## Features
 
-Add, edit and remove task
-Read task description
-Choose priority
-Sort by priority: Red(high), Yellow(mid), Green(low)
+- Add, edit, and remove tasks
+- Read task descriptions
+- Choose priority
+- Sort by priority: Red (high), Yellow (mid), Green (low)
 
 ## Screenshots
 
