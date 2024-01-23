@@ -15,6 +15,7 @@ const TodoList = () => {
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
   const [newTask, setNewTask] = useState("");
   const [selectedPriority, setSelectedPriority] = useState("");
+  const [newDescription, setNewDescription] = useState("");
 
   useEffect(() => {
     axios
@@ -64,6 +65,7 @@ const TodoList = () => {
         task: newTask,
         priority: selectedPriority || "red",
         completed: false,
+        description: newDescription || "",
       });
       setShowAddTaskModal(false);
 
@@ -84,13 +86,16 @@ const TodoList = () => {
 
   return (
     <>
-      <StyledTodoDiv>
+      <StyledTodoDiv className="StyledTodoDiv">
         <h1>Todo List</h1>
-        <StyledButton onClick={() => setShowAddTaskModal(true)}>
+        <StyledButton
+          className="StyledButton"
+          onClick={() => setShowAddTaskModal(true)}
+        >
           Add task
         </StyledButton>
       </StyledTodoDiv>
-      <StyledTodoList>
+      <StyledTodoList className="StyledTodoList">
         <div>
           <h4>Not completed</h4>
           {sortByPriority(notCompletedTodo).map((todo) => (
@@ -119,6 +124,8 @@ const TodoList = () => {
         handleClose={() => setShowAddTaskModal(false)}
         handleConfirm={() => handleAddTask(newTask)}
         handlePriorityChange={setSelectedPriority}
+        handleDescriptionChange={setNewDescription}
+        description={""}
         title="Add Task"
       >
         <label>Add Task:</label>

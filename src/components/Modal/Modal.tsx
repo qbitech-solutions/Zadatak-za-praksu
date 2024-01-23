@@ -8,11 +8,15 @@ const CustomModal = ({
   handleConfirm,
   title,
   children,
+  description,
   confirmText = "Confirm",
   currentPriority,
   handlePriorityChange,
+  handleDescriptionChange,
+  readOnly,
 }: ModalProps) => {
   const [newPriority, setNewPriority] = useState(currentPriority || "red");
+  const [newDescription, setNewDescription] = useState(description || "");
 
   const showPriorityDropdown = title === "Edit Task" || title === "Add Task";
 
@@ -43,13 +47,32 @@ const CustomModal = ({
             </select>
           </>
         )}
+        {description !== undefined && (
+          <div style={{ marginTop: "20px" }}>
+            <label>Description:</label>
+            <textarea
+              style={{ height: "100px", width: "100%" }}
+              value={newDescription}
+              onChange={(e) => {
+                setNewDescription(e.target.value);
+                handleDescriptionChange?.(e.target.value);
+              }}
+              readOnly={readOnly}
+            >
+              {description}
+            </textarea>
+          </div>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
         {handleConfirm && (
-          <Button variant="primary" onClick={() => handleConfirm(newPriority)}>
+          <Button
+            variant="primary"
+            onClick={() => handleConfirm(newPriority, newDescription)}
+          >
             {confirmText}
           </Button>
         )}

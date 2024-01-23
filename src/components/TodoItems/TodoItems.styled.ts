@@ -1,10 +1,6 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
-
-interface StyledTodoItemProps {
-  priority: "red" | "yellow" | "green";
-  completed: boolean | number;
-}
+import { StyledTodoItemProps } from "../../types";
 
 export const StyledTodoItem = styled.div<StyledTodoItemProps>`
   width: 500px;
@@ -22,6 +18,14 @@ export const StyledTodoItem = styled.div<StyledTodoItemProps>`
 
   div {
     flex-grow: 1;
+  }
+`;
+
+export const StyledDivTask = styled.div`
+  margin-left: 20px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
   }
 `;
 
