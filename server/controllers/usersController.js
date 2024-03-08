@@ -1,6 +1,6 @@
-const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 async function signup(req, res) {
   try {
@@ -40,8 +40,8 @@ async function login(req, res) {
     }
 
     //Create a JWT token
-    const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
-    const token = jwt.sign({ sub: user._id, exp: exp }, process.env.SECRET_KEY);
+    const token = jwt.sign({ sub: user._id }, process.env.SECRET_KEY);
+    res.setHeader("Authorization", `Bearer ${token}`);
 
     //Respond
     res.json({ token });
@@ -51,7 +51,13 @@ async function login(req, res) {
   }
 }
 
+const logout = (req, res) => {
+  //res.set("Authorization", "");
+  res.status(200).json({ message: "Logged out successfully" });
+};
+
 module.exports = {
   signup: signup,
   login: login,
+  logout: logout,
 };

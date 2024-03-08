@@ -17,10 +17,14 @@ app.post("/api/signup", usersController.signup);
 
 app.post("/api/login", usersController.login);
 
+app.get("/api/logout", usersController.logout);
+
 app.post("/api/tasks", tasksController.addNewTask);
 
 app.delete("/api/tasks/:id", tasksController.deleteTask);
 
 app.put("/api/tasks/:id", tasksController.updateTask);
+app.get("/api/uncompleted", tasksController.findUncompletedTasks);
+app.get("/api/completed", tasksController.findCompletedTasks);
 
 app.listen(process.env.PORT);

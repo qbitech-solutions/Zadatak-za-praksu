@@ -1,15 +1,23 @@
 const Todo = require("../Models/todo");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 const addNewTask = async (req, res) => {
-  const todo = new Todo({
-    title: req.body.title,
-    description: req.body.description,
-    user: "Stefan",
-    priority: req.body.priority,
-    status: "uncompleted",
-  });
+  const token = req.header("Authorization").split(" ")[1];
+  if (!token) return res.status(401).json({ message: "Token missing" });
 
   try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const user = await User.findById(decoded.sub);
+
+    const todo = new Todo({
+      title: req.body.title,
+      description: req.body.description,
+      user: user.username,
+      priority: req.body.priority,
+      status: "uncompleted",
+    });
+
     const savedTodo = await todo.save();
     res.status(201).json(savedTodo);
   } catch (err) {
@@ -52,8 +60,54 @@ const updateTask = async (req, res) => {
   }
 };
 
+const findUncompletedTasks = async (req, res) => {
+  const token = req.header("Authorization").split(" ")[1];
+  if (!token) return res.status(401).json({ message: "Token missing" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const user = await User.findById(decoded.sub);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const uncompletedTasks = await Todo.find({
+      user: user.username,
+      status: "uncompleted",
+    });
+
+    res.json(uncompletedTasks);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+const findCompletedTasks = async (req, res) => {
+  const token = req.header("Authorization").split(" ")[1];
+  if (!token) return res.status(401).json({ message: "Token missing" });
+
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const user = await User.findById(decoded.sub);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const uncompletedTasks = await Todo.find({
+      user: user.username,
+      status: "completed",
+    });
+
+    res.json(uncompletedTasks);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
 module.exports = {
   addNewTask: addNewTask,
   deleteTask: deleteTask,
   updateTask: updateTask,
+  findUncompletedTasks: findUncompletedTasks,
+  findCompletedTasks: findCompletedTasks,
 };
