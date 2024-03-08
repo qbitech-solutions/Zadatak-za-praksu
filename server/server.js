@@ -6,7 +6,6 @@ const express = require("express");
 const cors = require("cors");
 
 const connectDb = require("./config/connectDb");
-const Todo = require("./Models/todo");
 const tasksController = require("./controllers/tasksController");
 const usersController = require("./controllers/usersController");
 

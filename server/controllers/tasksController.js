@@ -1,6 +1,7 @@
 const Todo = require("../Models/todo");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const User = require("../Models/user");
+
 
 const addNewTask = async (req, res) => {
   const token = req.header("Authorization").split(" ")[1];
